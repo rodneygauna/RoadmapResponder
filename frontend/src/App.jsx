@@ -220,7 +220,17 @@ function App() {
 
           {/* Footer */}
           <div className="text-center mt-5 text-muted">
-            <small>Powered by OpenAI GPT • Built with React & Bootstrap</small>
+            <small>
+              Powered by OpenAI GPT • Created by{" "}
+              <a
+                href="https://github.com/rodneygauna"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-decoration-none"
+              >
+                Rodney Gauna
+              </a>
+            </small>
           </div>
         </Col>
       </Row>
