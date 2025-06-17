@@ -84,22 +84,25 @@ npm run dev
 
 ```text
 RoadmapResponder/
-├── backend/                 # Express.js API server
-│   ├── app.js              # Express app configuration
-│   ├── server.js           # Server entry point
+├── backend/                    # Express.js API server
+│   ├── Dockerfile              # Dockerfile for backend
+│   ├── app.json                # Express app configuration
+│   ├── server.js               # Server entry point
 │   ├── routes/
-│   │   └── ai.js           # OpenAI integration routes
+│   │   └── ai.js               # OpenAI integration routes
 │   ├── utils/
-│   │   └── promptBuilder.js # AI prompt construction
+│   │   └── promptBuilder.js    # AI prompt construction
 │   └── middleware/
-│       └── errorMiddleware.js
-├── frontend/               # React application
+│       └── errorMiddleware.js  # Error handling middleware
+├── frontend/                   # React application
 │   ├── src/
-│   │   ├── App.jsx         # Main application component
-│   │   └── main.jsx        # React entry point
-│   ├── index.html
-│   └── vite.config.js
-├── docker-compose.yaml     # Docker orchestration
+│   │   ├── App.jsx             # Main application component
+│   │   └── main.jsx            # React entry point
+│   ├── Dockerfile              # Dockerfile for frontend
+│   ├── index.html              # HTML template
+│   └── vite.config.js          # Vite configuration
+├── docker-compose.yaml         # Docker orchestration
+├── .env.example                # Example environment variables
 └── README.md
 ```
 
