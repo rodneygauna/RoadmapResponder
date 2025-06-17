@@ -28,8 +28,6 @@ services:
       - /usr/src/app/node_modules
     networks:
       - react-express
-    depends_on:
-      - mongodb
 
 # Networks
 networks:
