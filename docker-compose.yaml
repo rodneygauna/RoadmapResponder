@@ -1,0 +1,36 @@
+services:
+  # Frontend service
+  frontend:
+    build:
+      context: frontend
+    container_name: roadmapresponder_frontend
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - react-express
+    depends_on:
+      - backend
+
+  # Backend service
+  backend:
+    build:
+      context: backend
+    container_name: roadmapresponder_backend
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+    ports:
+      - 3001:3001
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - react-express
+    depends_on:
+      - mongodb
+
+# Networks
+networks:
+  react-express:
