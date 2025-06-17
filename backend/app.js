@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 // import exampleRoutes from './routes/exampleRoutes.js';
 // app.use('/api/examples', exampleRoutes);
 import aiRoutes from "./routes/ai.js";
-app.use("/v1/api/ai", aiRoutes);
+app.use("/api/v1/ai", aiRoutes);
 
 // Error handling
 app.use(notFound);
