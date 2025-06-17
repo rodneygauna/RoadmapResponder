@@ -1,26 +1,33 @@
 import express from "express";
-import { Configuration, OpenAIApi } from "openai";
+import OpenAI from "openai";
 import buildPrompt from "../utils/promptBuilder.js";
 
 const router = express.Router();
-const openai = new OpenAIApi(
-  new Configuration({ apiKey: process.env.OPENAI_API_KEY })
-);
+
+// Initialize OpenAI API client
+const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+if (!OPENAI_API_KEY) {
+  throw new Error("OPENAI_API_KEY is not set in environment variables");
+}
+
+const openai = new OpenAI({
+  apiKey: OPENAI_API_KEY,
+});
 
 router.post("/generate", async (req, res) => {
   const { requestText, template, tone } = req.body;
   const prompt = buildPrompt(requestText, template, tone);
 
   try {
-    const completion = await openai.createChatCompletion({
-      model: "gpt-4",
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4o-mini",
       messages: [
         { role: "system", content: "You are a helpful product manager." },
         { role: "user", content: prompt },
       ],
       temperature: 0.7,
     });
-    res.json({ response: completion.data.choices[0].message.content.trim() });
+    res.json({ response: completion.choices[0].message.content.trim() });
   } catch (err) {
     res
       .status(500)

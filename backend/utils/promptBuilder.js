@@ -1,22 +1,32 @@
 const templates = {
-  acknowledgment: "Thank you for your suggestion! We appreciate your input...",
+  acknowledgment:
+    "Thank the customer for sharing their idea and let them know their request has been noted.",
   future_consideration:
-    "Thanks for your idea! It's been shared with our product team...",
+    "Thank the customer for sharing their idea and let them know it’s been captured for future review.",
   on_the_radar:
-    "Great minds think alike! This request aligns with discussions...",
-  decline_politely: "Thanks for the suggestion! While we love hearing ideas...",
+    "Thank the customer for sharing their idea and let them know something related is already tentatively planned for [Quarter/Date Placeholder].",
+  decline_politely:
+    "Thanks for the suggestion! While we love hearing ideas, this particular request doesn't align with our current plans.",
 };
 
 const tones = {
-  neutral: "Respond in a neutral, professional tone.",
-  friendly: "Respond in a warm and friendly tone.",
-  apologetic:
-    "Respond in a polite and empathetic tone, acknowledging the limitations.",
+  neutral: "Use a neutral and professional tone.",
+  friendly: "Use a friendly and approachable tone.",
+  apologetic: "Use a polite and empathetic tone that acknowledges limitations.",
 };
 
 export default function buildPrompt(requestText, templateKey, toneKey) {
   const base = templates[templateKey];
   const toneInstruction = tones[toneKey];
 
-  return `A customer submitted the following request:\n"${requestText}"\n\nRespond professionally using this base:\n"${base}"\n\n${toneInstruction}`;
+  return `
+A customer submitted the following product enhancement request:
+"${requestText}"
+
+Write a single concise paragraph that follows this guidance:
+${base}
+
+Do not format as an email. ${toneInstruction}
+Keep the tone professional and limit the response to no more than 3 sentences.
+  `.trim();
 }
