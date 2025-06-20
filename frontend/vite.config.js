@@ -6,6 +6,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
+    host: true, // Allow external connections
+    allowedHosts: ["dev.rodney.codes"],
     proxy: {
       "/api": {
         target: "http://backend:3001",
